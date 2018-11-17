@@ -96,7 +96,7 @@ public class AppController implements CodeConstant {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @RequestMapping(value="/device/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DeviceRegistrationResponse> registerDevice(@RequestBody DeviceRegisterRequest request) {
+    public ResponseEntity<DeviceRegistrationResponse> registerDevice(@RequestBody DeviceRegisterRequest request, HttpServletRequest servletRequest) {
     	DeviceRegistrationResponse response = service.registerDevice(request);
     	if(Log.isDebugEnabled())
             Log.debug("device app id generated "+response.getAppId());
