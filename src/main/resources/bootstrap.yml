@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: CRUD-SERVICE
+  profiles:
+    active: local
+server:
+  port: ${PORT:8901}
