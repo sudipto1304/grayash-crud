@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grayash.crud.common.model.request.CommonRequest;
 import com.grayash.crud.common.model.request.DeviceRegisterRequest;
+import com.grayash.crud.common.model.request.OTPRequest;
 import com.grayash.crud.common.model.request.ValidateOTPRequest;
 import com.grayash.crud.common.model.response.DeviceRegistrationResponse;
 import com.grayash.crud.common.model.response.OTPResponse;
@@ -45,7 +46,7 @@ public class AppController implements CodeConstant {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @RequestMapping(value="/otp/generate", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> generateOtp(@RequestBody CommonRequest request, HttpServletRequest servletRequest) {
+    public ResponseEntity<String> generateOtp(@RequestBody OTPRequest request, HttpServletRequest servletRequest) {
         if(Log.isDebugEnabled())
             Log.debug("Request to generate OTP for the customerId::"+request);
         OTPResponse response = service.generateOTP(request);

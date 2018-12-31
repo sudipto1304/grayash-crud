@@ -10,5 +10,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface OTPRepository extends JpaRepository<OTPEntity, Long> {
 
-    OTPEntity findTopByCustomerIdOrderByUpdateTimeDesc(String customerId);
+    OTPEntity findTopByPhoneNumber(String phoneNumber);
 }

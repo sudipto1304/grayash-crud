@@ -34,7 +34,7 @@ public class AuditActivityAspect {
 	private MessageSenderService service;
 
 	@AfterReturning(pointcut = "execution(* com.grayash.crud..controller..handleGlobalException(..))", returning = "result")
-	public void auditException(JoinPoint joinPoint, Object result) throws Throwable {
+	public void auditException(JoinPoint joinPoint, Object result) {
 		try {
 			Object[] arr = joinPoint.getArgs();
 			PCRuntimeException exception = null;
@@ -68,7 +68,7 @@ public class AuditActivityAspect {
 	}
 
 	@AfterReturning(pointcut = "execution(* com.grayash.crud..controller..*(..)) && !execution(* com.grayash.crud..controller..handleGlobalException(..))", returning = "result")
-	public void auditResponse(JoinPoint joinPoint, Object result) throws Throwable {
+	public void auditResponse(JoinPoint joinPoint, Object result)  {
 		try {
 			Object[] arr = joinPoint.getArgs();
 			HttpServletRequest servletRequest = null;
@@ -104,7 +104,7 @@ public class AuditActivityAspect {
 	}
 
 	@Before("execution(* com.grayash.crud..controller..*(..)) && !execution(* com.grayash.crud..controller..handleGlobalException(..))")
-	public void auditRequest(JoinPoint joinPoint) throws Throwable {
+	public void auditRequest(JoinPoint joinPoint)  {
 		try {
 			Object[] arr = joinPoint.getArgs();
 			String request = null;

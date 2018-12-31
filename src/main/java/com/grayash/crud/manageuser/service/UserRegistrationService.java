@@ -59,6 +59,7 @@ public class UserRegistrationService {
             userEntity.setLastName(request.getLastName().toUpperCase());
             userEntity.setUserId(request.getUserId());
             userEntity.setEmailId(request.getEmailId());
+            userEntity.setZipCode(request.getZipCode());
             userEntity.setPhoneNumber(ManageUserUtil.unFormatPhoneNumber(request.getContactNumber()));
             try {
                 userEntity.setPassword(trippleDes.encrypt(request.getPassword()));

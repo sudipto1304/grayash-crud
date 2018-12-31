@@ -40,7 +40,7 @@ public class GrayashCrudApplication extends SpringBootServletInitializer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .useDefaultResponseMessages(false)
                 .select()
-                .apis( RequestHandlerSelectors.basePackage( "com.poolcar.crudmanager" ) )
+                .apis( RequestHandlerSelectors.basePackage( "com.grayash.crud" ) )
                 .paths(PathSelectors.any())
                 .build();
     }
