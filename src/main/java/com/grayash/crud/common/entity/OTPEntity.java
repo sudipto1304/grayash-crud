@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class OTPEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID")
     private Long id;
     @Column(name="OTP")
@@ -25,13 +25,9 @@ public class OTPEntity implements Serializable {
     private String updateTime;
     @Column(name="STATUS")
     private String status;
-    @Column(name="OTP_GENERATION_TIME")
-    private String generationTime;
-    @Column(name="CUSTOMER_ID")
-    private String customerId;
     @Column(name="PHONE_NUMBER_COUNTRY_CODE")
     private String phoneNumberCountry;
-    @Column(name="count")
+    @Column(name="ATTEMPT_COUNT")
     private int count;
 
 

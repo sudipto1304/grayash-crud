@@ -25,7 +25,7 @@ public class UserEntity implements Serializable {
     private String lastName;
 	
 	@Column(name="ZIP_CODE")
-    private Long zipCode;
+    private String zipCode;
 	
 	@Column(name="ADDRESS")
     private String address;
