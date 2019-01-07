@@ -35,7 +35,7 @@ public class UserRegistrationService {
     private TrippleDes trippleDes;
 
     @Autowired
-    private AuthTokenService tokenService;
+    private OauthTokenService tokenService;
 
     public ManagerUserResponse registerUser(ManageUserRequest request) throws UserPresentException {
         UserEntity entity;
