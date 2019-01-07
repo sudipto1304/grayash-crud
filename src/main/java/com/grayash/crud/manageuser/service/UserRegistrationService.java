@@ -7,10 +7,10 @@ import java.util.UUID;
 
 import com.grayash.crud.common.util.TrippleDes;
 import com.grayash.crud.manageuser.exception.UserPresentException;
-import com.grayash.crud.manageuser.model.AccountStatus;
-import com.grayash.crud.manageuser.model.ManageUserRequest;
-import com.grayash.crud.manageuser.model.ManagerUserResponse;
-import com.grayash.crud.manageuser.model.Verify;
+import com.grayash.crud.manageuser.model.request.AccountStatus;
+import com.grayash.crud.manageuser.model.request.ManageUserRequest;
+import com.grayash.crud.manageuser.model.request.Verify;
+import com.grayash.crud.manageuser.model.response.ManagerUserResponse;
 import com.grayash.crud.manageuser.repository.UserRepository;
 import com.grayash.crud.manageuser.util.ManageUserUtil;
 import org.slf4j.Logger;

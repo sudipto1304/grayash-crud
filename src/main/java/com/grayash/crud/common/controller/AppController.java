@@ -24,7 +24,7 @@ import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.service.AppCommonService;
 import com.grayash.crud.common.util.CodeConstant;
 import com.grayash.crud.common.util.CommonUtils;
-import com.grayash.crud.manageuser.model.ManagerUserResponse;
+import com.grayash.crud.manageuser.model.response.ManagerUserResponse;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

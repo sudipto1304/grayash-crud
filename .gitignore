@@ -54,3 +54,12 @@ bin/main/com/grayash/crud/manageuser/service/AuthTokenService.class
 bin/main/com/grayash/crud/manageuser/service/UserRegistrationService.class
 bin/main/com/grayash/crud/manageuser/util/ManageUserUtil.class
 bin/test/com/grayash/crud/grayashcrud/GrayashCrudApplicationTests.class
+.gradle/4.8.1/fileContent/annotation-processors.bin
+.gradle/4.8.1/fileContent/fileContent.lock
+.gradle/4.8.1/fileHashes/resourceHashesCache.bin
+.gradle/4.8.1/taskHistory/taskHistory.bin
+.gradle/4.8.1/taskHistory/taskHistory.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/cache.properties
+.gradle/buildOutputCleanup/outputFiles.bin
+*.class

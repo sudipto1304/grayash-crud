@@ -1,4 +1,4 @@
-package com.grayash.crud.manageuser.model;
+package com.grayash.crud.manageuser.model.request;
 
 import java.io.Serializable;
 

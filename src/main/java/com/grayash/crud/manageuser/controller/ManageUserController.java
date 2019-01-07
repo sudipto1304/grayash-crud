@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.util.CodeConstant;
 import com.grayash.crud.common.util.CommonUtils;
-import com.grayash.crud.manageuser.model.ManageUserRequest;
-import com.grayash.crud.manageuser.model.ManagerUserResponse;
+import com.grayash.crud.manageuser.model.request.ManageUserRequest;
+import com.grayash.crud.manageuser.model.response.ManagerUserResponse;
 import com.grayash.crud.manageuser.service.UserRegistrationService;
 
 import io.swagger.annotations.ApiResponse;

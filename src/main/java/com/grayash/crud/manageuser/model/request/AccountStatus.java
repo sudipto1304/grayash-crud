@@ -1,4 +1,4 @@
-package com.grayash.crud.manageuser.model;
+package com.grayash.crud.manageuser.model.request;
 
 public enum AccountStatus {
 

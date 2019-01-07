@@ -1,6 +1,8 @@
-package com.grayash.crud.manageuser.model;
+package com.grayash.crud.manageuser.model.response;
 
 import com.grayash.crud.common.model.response.Status;
+import com.grayash.crud.manageuser.model.request.AccountStatus;
+import com.grayash.crud.manageuser.model.request.Verify;
 
 import lombok.Data;
 import lombok.ToString;

@@ -1,19 +1,11 @@
 package com.grayash.crud.common.controller;
 
 
-import com.grayash.crud.common.exception.CustomerIdNotFoundException;
-import com.grayash.crud.common.exception.OTPExpiredException;
-import com.grayash.crud.common.exception.OTPNotMatchException;
-import com.grayash.crud.common.exception.OtpNotGeneratedException;
-import com.grayash.crud.common.model.response.Status;
-import com.grayash.crud.common.util.CommonUtils;
-import com.grayash.crud.common.util.CodeConstant;
-import com.grayash.crud.common.util.ErrorMsg;
-import com.grayash.crud.manageuser.exception.UserPresentException;
+import static com.grayash.crud.common.util.ErrorMsg.getErrorMsg;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,7 +15,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import static com.grayash.crud.common.util.ErrorMsg.*;
+import com.grayash.crud.common.exception.CustomerIdNotFoundException;
+import com.grayash.crud.common.exception.OTPExpiredException;
+import com.grayash.crud.common.exception.OTPNotMatchException;
+import com.grayash.crud.common.exception.OtpNotGeneratedException;
+import com.grayash.crud.common.model.response.Status;
+import com.grayash.crud.common.util.CodeConstant;
+import com.grayash.crud.common.util.CommonUtils;
+import com.grayash.crud.manageuser.exception.UserPresentException;
 
 @SuppressWarnings("Duplicates")
 @ControllerAdvice
@@ -64,6 +63,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
         Status status  = new Status();
         status.setResponseCode(MSG_00004);
         status.setResponseMsg(getErrorMsg(MSG_00004));
+        status.setHttpCode(HttpStatus.PRECONDITION_FAILED);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
+                headers, HttpStatus.PRECONDITION_FAILED, request);
+    }
+    
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    protected ResponseEntity<Object> handleGlobalException(DataIntegrityViolationException ex, WebRequest request) {
+        Status status  = new Status();
+        status.setResponseCode(MSG_00010);
+        status.setResponseMsg(getErrorMsg(MSG_00010));
         status.setHttpCode(HttpStatus.PRECONDITION_FAILED);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

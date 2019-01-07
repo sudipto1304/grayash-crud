@@ -12,7 +12,8 @@ public interface CodeConstant {
     String MSG_00007 = "MSG_00007";
     String MSG_00008 = "MSG_00008";
     String MSG_00009 = "MSG_00009";
-
+    String MSG_00010 = "MSG_00010";
+    String MSG_00011 = "MSG_00011";
 
     String HTTP_OK_STATUS = "200_OK";
 }

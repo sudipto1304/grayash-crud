@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: CRUD-SERVICE
   zipkin:
     base-url: http://localhost:8903/
   sleuth:
@@ -28,8 +26,6 @@ spring:
     port: 5672
     username: guest
     password: guest
-server:
-  port: ${PORT:8901}
 ribbon:
   eureka:
     enabled: false
