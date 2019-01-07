@@ -21,7 +21,10 @@ import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.util.CodeConstant;
 import com.grayash.crud.common.util.CommonUtils;
 import com.grayash.crud.manageuser.model.request.ManageUserRequest;
+import com.grayash.crud.manageuser.model.request.OauthRequest;
 import com.grayash.crud.manageuser.model.response.ManagerUserResponse;
+import com.grayash.crud.manageuser.model.response.OauthToken;
+import com.grayash.crud.manageuser.service.OauthTokenService;
 import com.grayash.crud.manageuser.service.UserRegistrationService;
 
 import io.swagger.annotations.ApiResponse;
@@ -35,6 +38,10 @@ public class ManageUserController implements CodeConstant {
 	
 	@Autowired
 	private UserRegistrationService service;
+	
+	
+	@Autowired
+	private OauthTokenService tokenService;
 
 
 
@@ -45,12 +52,21 @@ public class ManageUserController implements CodeConstant {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> registerUser(@RequestBody ManageUserRequest request, HttpServletRequest servletRequest, @RequestHeader HttpHeaders headers) {
+	public ResponseEntity<ManagerUserResponse> registerUser(@RequestBody ManageUserRequest request, HttpServletRequest servletRequest, @RequestHeader HttpHeaders headers) {
 		if(Log.isDebugEnabled())
 			Log.debug("Registration Request::"+request);
 		ManagerUserResponse response = service.registerUser(request);
 		response.setStatus(new Status(HTTP_OK_STATUS, "", HttpStatus.CREATED));
-		return new ResponseEntity<>(CommonUtils.constructJsonResponse(response), HttpStatus.CREATED);
+		return new ResponseEntity<>(response, HttpStatus.CREATED);
+	}
+    
+    
+    @RequestMapping(value="/OauthTest", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<OauthToken> getOauthToken(@RequestBody OauthRequest request, HttpServletRequest servletRequest, @RequestHeader HttpHeaders headers) {
+		if(Log.isDebugEnabled())
+			Log.debug("OauthTest Request::"+request);
+		OauthToken response = tokenService.getOauthToken(request.getUsername(), request.getPassword());
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
 
