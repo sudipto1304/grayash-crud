@@ -25,11 +25,7 @@ public class AuthTokenService {
     private String oauthAppName;
 
     public OauthToken getOauthToken(String userName, String password){
-        OauthRequest request = new OauthRequest();
-        request.setGrant_type("password");
-        request.setPassword(password);
-        request.setUsername(userName);
-        OauthToken response = oauthCLient.getTokens(request);
+        OauthToken response = oauthCLient.getTokens("password", userName, password);
         Log.debug("Oauth Response:::"+response);
         return response;
     }

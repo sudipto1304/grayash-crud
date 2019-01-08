@@ -14,6 +14,10 @@ public interface CodeConstant {
     String MSG_00009 = "MSG_00009";
     String MSG_00010 = "MSG_00010";
     String MSG_00011 = "MSG_00011";
+    
+    public static final String TOKEN_PREFIX = "Bearer ";
+    public static final String HEADER_STRING = "Authorization";
+    String SECRET ="725e76e5-cd25-4b8a-8b57-96cb4fb356f6";
 
     String HTTP_OK_STATUS = "200_OK";
 }
