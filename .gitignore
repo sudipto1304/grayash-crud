@@ -63,3 +63,6 @@ bin/test/com/grayash/crud/grayashcrud/GrayashCrudApplicationTests.class
 .gradle/buildOutputCleanup/cache.properties
 .gradle/buildOutputCleanup/outputFiles.bin
 *.class
+*.class
+*.class
+*.class
