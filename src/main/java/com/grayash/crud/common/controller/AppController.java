@@ -46,14 +46,14 @@ public class AppController implements CodeConstant {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @RequestMapping(value="/otp/generate", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> generateOtp(@RequestBody OTPRequest request, HttpServletRequest servletRequest) {
+    public ResponseEntity<OTPResponse> generateOtp(@RequestBody OTPRequest request, HttpServletRequest servletRequest) {
         if(Log.isDebugEnabled())
             Log.debug("Request to generate OTP for the customerId::"+request);
         OTPResponse response = service.generateOTP(request);
         response.setStatus(new Status(HTTP_OK_STATUS, "", HttpStatus.ACCEPTED));
         if(Log.isDebugEnabled())
             Log.debug("returning response "+response);
-        return new ResponseEntity<>(CommonUtils.constructJsonResponse(response), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
     }
 
 
@@ -75,21 +75,6 @@ public class AppController implements CodeConstant {
     }
 
 
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = Status.class),
-            @ApiResponse(code = 412, message = "Precondition Failed"),
-            @ApiResponse(code = 426, message = "Upgrade Required"),
-            @ApiResponse(code = 406, message = "Not Acceptable"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
-    })
-    @RequestMapping(value="/statuscheck", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getStatus(HttpServletRequest servletRequest) {
-        Status status = new Status("200_OK", "SERVER_OK", HttpStatus.OK);
-        if(Log.isDebugEnabled())
-            Log.debug("returning response "+status);
-        return new ResponseEntity<>(CommonUtils.constructJsonResponse(status), HttpStatus.OK);
-    }
-    
     
     @ApiResponses(value = {
     		@ApiResponse(code = 201, message = "Created", response = DeviceRegistrationResponse.class),

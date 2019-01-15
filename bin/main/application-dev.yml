@@ -37,6 +37,8 @@ logging:
     root: WARN
     com:
       grayash: DEBUG
+      github:
+        grayash: DEBUG
     org:
       springframework:
         security: DEBUG

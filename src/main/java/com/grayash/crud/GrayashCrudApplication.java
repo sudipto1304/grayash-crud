@@ -13,6 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import com.github.grayash.security.EnableGrayashSecurity;
 import com.grayash.auditactivity.config.EnableAuditActivity;
 
 import springfox.documentation.builders.PathSelectors;
@@ -22,12 +23,12 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-@EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableSwagger2
 @EnableAsync
 @EnableFeignClients
-@EnableAuditActivity(serviceName="CRUD-SERVICE")
+//@EnableAuditActivity(serviceName="CRUD-SERVICE")
 //@EnableDiscoveryClient
+@EnableGrayashSecurity
 public class GrayashCrudApplication extends SpringBootServletInitializer {
 
 	
