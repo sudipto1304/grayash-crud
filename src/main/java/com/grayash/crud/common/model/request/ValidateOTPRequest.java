@@ -9,7 +9,6 @@ import lombok.ToString;
 @ToString
 public class ValidateOTPRequest extends CommonRequest implements Serializable{
 
-    private String otp;
     private String phoneNumber;
-    private String phoneNumberCountryCode;
+    private FlowType flowType;
 }

@@ -3,7 +3,7 @@ package com.grayash.crud.common.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PCRuntimeException extends RuntimeException{
+public class PCRuntimeException extends RuntimeException {
 
     private static final Logger Log = LoggerFactory.getLogger(PCRuntimeException.class);
 

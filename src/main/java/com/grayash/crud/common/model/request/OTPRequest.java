@@ -11,6 +11,6 @@ import lombok.ToString;
 public class OTPRequest extends CommonRequest implements Serializable{
 
 	private String phoneNumber;
-	private String flowId;
+	private FlowType flowId;
 	private String countryCode;
 }

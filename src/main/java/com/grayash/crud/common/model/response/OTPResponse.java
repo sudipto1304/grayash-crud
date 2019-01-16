@@ -7,7 +7,6 @@ import lombok.ToString;
 @ToString
 public class OTPResponse {
 
-    private String OTP;
     private String phoneNumber;
     private String phoneNumberCountryCode;
     private OTPStatus otpStatus;

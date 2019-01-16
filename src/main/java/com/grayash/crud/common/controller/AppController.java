@@ -14,17 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.grayash.crud.common.model.request.CommonRequest;
-import com.grayash.crud.common.model.request.DeviceRegisterRequest;
 import com.grayash.crud.common.model.request.OTPRequest;
 import com.grayash.crud.common.model.request.ValidateOTPRequest;
-import com.grayash.crud.common.model.response.DeviceRegistrationResponse;
 import com.grayash.crud.common.model.response.OTPResponse;
 import com.grayash.crud.common.model.response.Status;
+import com.grayash.crud.common.model.response.ValidateOTPResponse;
 import com.grayash.crud.common.service.AppCommonService;
 import com.grayash.crud.common.util.CodeConstant;
 import com.grayash.crud.common.util.CommonUtils;
-import com.grayash.crud.manageuser.model.response.ManagerUserResponse;
 
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -58,34 +55,19 @@ public class AppController implements CodeConstant {
 
 
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = Status.class),
+            @ApiResponse(code = 200, message = "OK", response = ValidateOTPResponse.class),
             @ApiResponse(code = 412, message = "Precondition Failed"),
             @ApiResponse(code = 426, message = "Upgrade Required"),
             @ApiResponse(code = 406, message = "Not Acceptable"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @RequestMapping(value="/otp/validate", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> validateOtp(@RequestBody ValidateOTPRequest request, HttpServletRequest servletRequest) {
+    public ResponseEntity<ValidateOTPResponse> validateOtp(@RequestBody ValidateOTPRequest request, HttpServletRequest servletRequest) {
         if(Log.isDebugEnabled())
             Log.debug("Validate OTP Request::"+request);
-        Status status = service.validateOTP(request.getOtp(), request.getOtp());
+        ValidateOTPResponse response = service.validateOTP(request);
         if(Log.isDebugEnabled())
-            Log.debug("returning response "+status);
-        return new ResponseEntity<>(CommonUtils.constructJsonResponse(status), HttpStatus.OK);
-    }
-
-
-    
-    @ApiResponses(value = {
-    		@ApiResponse(code = 201, message = "Created", response = DeviceRegistrationResponse.class),
-            @ApiResponse(code = 412, message = "Precondition Failed"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
-    })
-    @RequestMapping(value="/device/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DeviceRegistrationResponse> registerDevice(@RequestBody DeviceRegisterRequest request, HttpServletRequest servletRequest) {
-    	DeviceRegistrationResponse response = service.registerDevice(request);
-    	if(Log.isDebugEnabled())
-            Log.debug("device app id generated "+response.getAppId());
-    	return new ResponseEntity<>(response, HttpStatus.CREATED);
+            Log.debug("returning response "+response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

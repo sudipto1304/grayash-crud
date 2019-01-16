@@ -46,6 +46,7 @@ dependencies {
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
 	implementation group: 'com.github.gray-ash', name: 'security-filter', version: '1.0.9-SNAPSHOT'
 	implementation group: 'com.github.gray-ash', name: 'audit-activity', version: '1.0.9-SNAPSHOT'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
 }
 
 dependencyManagement {

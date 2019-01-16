@@ -4,6 +4,10 @@ package com.grayash.crud.common.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+
+import com.grayash.crud.common.model.request.FlowType;
+import com.grayash.crud.common.model.response.OTPStatus;
+
 import java.io.Serializable;
 
 @Entity
