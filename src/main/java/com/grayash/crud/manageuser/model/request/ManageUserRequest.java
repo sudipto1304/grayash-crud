@@ -6,8 +6,10 @@ import com.grayash.crud.common.model.request.CommonRequest;
 import com.grayash.crud.common.model.response.ClientDetails;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class ManageUserRequest extends CommonRequest implements Serializable{
 	
 	private String userId;
@@ -26,26 +28,7 @@ public class ManageUserRequest extends CommonRequest implements Serializable{
 	private int countryCode;
 	private boolean isTncAccepted;
 
-    @Override
-    public String toString() {
-        return "ManageUserRequest{" +
-                "userId='" + userId + '\'' +
-                ", emailId='" + emailId + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", addressLine1='" + addressLine1 + '\'' +
-                ", addressLine2='" + addressLine2 + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", country='" + country + '\'' +
-                ", address='" + address + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", countryCode=" + countryCode +
-                ", isTncAccepted=" + isTncAccepted +
-                '}';
-    }
+    
 
 
 }

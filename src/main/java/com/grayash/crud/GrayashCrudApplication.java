@@ -26,7 +26,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableAsync
 @EnableFeignClients
-//@EnableAuditActivity(serviceName="CRUD-SERVICE")
+@EnableAuditActivity(serviceName="CRUD-SERVICE")
 //@EnableDiscoveryClient
 @EnableGrayashSecurity
 public class GrayashCrudApplication extends SpringBootServletInitializer {

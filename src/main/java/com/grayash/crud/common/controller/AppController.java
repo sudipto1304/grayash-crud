@@ -68,7 +68,7 @@ public class AppController implements CodeConstant {
     public ResponseEntity<String> validateOtp(@RequestBody ValidateOTPRequest request, HttpServletRequest servletRequest) {
         if(Log.isDebugEnabled())
             Log.debug("Validate OTP Request::"+request);
-        Status status = service.validateOTP(request.getCustomerId(), request.getOtp());
+        Status status = service.validateOTP(request.getOtp(), request.getOtp());
         if(Log.isDebugEnabled())
             Log.debug("returning response "+status);
         return new ResponseEntity<>(CommonUtils.constructJsonResponse(status), HttpStatus.OK);

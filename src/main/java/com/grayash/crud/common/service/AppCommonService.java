@@ -120,10 +120,10 @@ public class AppCommonService implements CodeConstant {
 		deviceEntity.setAppId(appId);
 		deviceEntity.setCountryCode(request.getCountryCode());
 		deviceEntity.setDeviceType(request.getDeviceType());
-		deviceEntity.setIp(request.getIp());
-		deviceEntity.setIsp(request.getIsp());
-		deviceEntity.setOs(request.getOs());
-		deviceEntity.setOsVersion(request.getOsVersion());
+		deviceEntity.setIp(request.getAppData().getIp());
+		deviceEntity.setIsp(request.getAppData().getIsp());
+		deviceEntity.setOs(request.getAppData().getOs());
+		deviceEntity.setOsVersion(request.getAppData().getOsVersion());
 		InstalledAppDeviceEntity deviceResponseEntity = deviceRepository.save(deviceEntity);
 		DeviceRegistrationResponse response = new DeviceRegistrationResponse();
 		response.setAppId(deviceResponseEntity.getAppId());

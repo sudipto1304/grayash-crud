@@ -9,6 +9,5 @@ import java.io.Serializable;
 @ToString
 public class CommonRequest implements Serializable {
 
-    private String customerId;
-    private String flowId;
+   private AppData appData;
 }
