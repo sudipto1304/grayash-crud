@@ -1,9 +1,9 @@
 package com.grayash.crud.manageuser.model.response;
 
+import java.io.Serializable;
+
 import lombok.Data;
 import lombok.ToString;
-
-import java.io.Serializable;
 
 @Data
 @ToString

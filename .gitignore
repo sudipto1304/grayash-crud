@@ -66,3 +66,7 @@ bin/test/com/grayash/crud/grayashcrud/GrayashCrudApplicationTests.class
 *.class
 *.class
 *.class
+bin/main/com/grayash/crud/common/service/MessageSenderService.class
+*.class
+*.class
+*.class

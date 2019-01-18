@@ -1,14 +1,16 @@
 package com.grayash.crud.common.entity;
 
 
-import lombok.Data;
-
-import javax.persistence.*;
-
-import com.grayash.crud.common.model.request.FlowType;
-import com.grayash.crud.common.model.response.OTPStatus;
-
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
 
 @Entity
 @Table(name = "DATA_CUSTOMER_OTP")

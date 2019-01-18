@@ -1,12 +1,13 @@
 package com.grayash.crud.manageuser.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.grayash.crud.manageuser.entity.UserEntity;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import javax.transaction.Transactional;
-import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.grayash.crud.manageuser.entity.UserEntity;
 
 @Repository
 @Transactional

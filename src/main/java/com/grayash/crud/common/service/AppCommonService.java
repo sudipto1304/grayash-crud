@@ -1,7 +1,5 @@
 package com.grayash.crud.common.service;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +10,11 @@ import com.grayash.crud.common.model.request.OTPRequest;
 import com.grayash.crud.common.model.request.ValidateOTPRequest;
 import com.grayash.crud.common.model.response.OTPResponse;
 import com.grayash.crud.common.model.response.OTPStatus;
-import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.model.response.ValidateOTPResponse;
 import com.grayash.crud.common.repository.OTPRepository;
 import com.grayash.crud.common.util.CodeConstant;
 import com.grayash.crud.common.util.CommonUtils;
-import com.grayash.crud.manageuser.entity.UserEntity;
+import com.grayash.crud.common.util.ErrorMsg;
 import com.grayash.crud.manageuser.repository.UserRepository;
 
 @Service
@@ -61,6 +58,10 @@ public class AppCommonService implements CodeConstant {
 			response.setPhoneNumber(otpEntity.getPhoneNumber());
 		}
 		return response;
+	}
+	
+	public String getErrorMessage(String msgCode) {
+		return ErrorMsg.getErrorMsg(msgCode);
 	}
 
 	

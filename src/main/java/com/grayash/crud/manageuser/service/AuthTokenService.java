@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.grayash.crud.manageuser.clients.OauthClient;
-import com.grayash.crud.manageuser.model.request.OauthRequest;
 import com.grayash.crud.manageuser.model.response.OauthToken;
 
 @Component

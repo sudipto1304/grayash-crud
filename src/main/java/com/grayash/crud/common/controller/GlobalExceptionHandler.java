@@ -15,14 +15,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.grayash.crud.common.exception.CustomerIdNotFoundException;
-import com.grayash.crud.common.exception.OTPExpiredException;
-import com.grayash.crud.common.exception.OTPNotMatchException;
-import com.grayash.crud.common.exception.OtpNotGeneratedException;
+import com.github.grayash.exception.CustomerIdNotFoundException;
+import com.github.grayash.exception.InvalidMessageCodeException;
+import com.github.grayash.exception.OTPExpiredException;
+import com.github.grayash.exception.OTPNotMatchException;
+import com.github.grayash.exception.OtpNotGeneratedException;
+import com.github.grayash.exception.UserPresentException;
 import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.util.CodeConstant;
 import com.grayash.crud.common.util.CommonUtils;
-import com.grayash.crud.manageuser.exception.UserPresentException;
 
 @SuppressWarnings("Duplicates")
 @ControllerAdvice
@@ -47,6 +48,19 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
 
     @ExceptionHandler(CustomerIdNotFoundException.class)
     protected ResponseEntity<Object> handleGlobalException(CustomerIdNotFoundException ex, WebRequest request) {
+        Status status  = new Status();
+        status.setResponseCode(MSG_00003);
+        status.setResponseMsg(getErrorMsg(MSG_00003));
+        status.setHttpCode(HttpStatus.PRECONDITION_FAILED);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
+                headers, HttpStatus.PRECONDITION_FAILED, request);
+    }
+
+    
+    @ExceptionHandler(InvalidMessageCodeException.class)
+    protected ResponseEntity<Object> handleGlobalException(InvalidMessageCodeException ex, WebRequest request) {
         Status status  = new Status();
         status.setResponseCode(MSG_00003);
         status.setResponseMsg(getErrorMsg(MSG_00003));

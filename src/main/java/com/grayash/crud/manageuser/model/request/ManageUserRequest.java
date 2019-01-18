@@ -3,7 +3,6 @@ package com.grayash.crud.manageuser.model.request;
 import java.io.Serializable;
 
 import com.grayash.crud.common.model.request.CommonRequest;
-import com.grayash.crud.common.model.response.ClientDetails;
 
 import lombok.Data;
 import lombok.ToString;

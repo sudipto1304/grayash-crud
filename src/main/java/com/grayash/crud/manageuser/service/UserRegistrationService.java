@@ -1,26 +1,22 @@
 package com.grayash.crud.manageuser.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.grayash.exception.UserPresentException;
 import com.grayash.crud.common.util.TrippleDes;
-import com.grayash.crud.manageuser.exception.UserPresentException;
+import com.grayash.crud.manageuser.entity.UserEntity;
 import com.grayash.crud.manageuser.model.request.AccountStatus;
 import com.grayash.crud.manageuser.model.request.ManageUserRequest;
 import com.grayash.crud.manageuser.model.request.Verify;
 import com.grayash.crud.manageuser.model.response.ManagerUserResponse;
 import com.grayash.crud.manageuser.repository.UserRepository;
 import com.grayash.crud.manageuser.util.ManageUserUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Service;
-
-import com.grayash.crud.manageuser.entity.UserEntity;
 
 @Service
 public class UserRegistrationService {

@@ -1,7 +1,5 @@
 package com.grayash.crud.common.model.response;
 
-import java.io.Serializable;
-
 import lombok.Data;
 import lombok.ToString;
 

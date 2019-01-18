@@ -1,10 +1,13 @@
 package com.grayash.crud.manageuser.entity;
 
-import javax.persistence.*;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Data;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "DATA_CUSTOMER_INFORMATION")

@@ -3,6 +3,8 @@ package com.grayash.crud.common.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.github.grayash.exception.InvalidMessageCodeException;
+
 public class ErrorMsg {
 
     private static Map<String, String> errorMsg=new HashMap<>();
@@ -10,8 +12,10 @@ public class ErrorMsg {
     public static String getErrorMsg(String msgCode){
         if(errorMsg!=null){
             return errorMsg.get(msgCode);
+        }else {
+        	throw new InvalidMessageCodeException();
         }
-        return null;
+        
     }
 
 

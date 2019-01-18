@@ -3,10 +3,7 @@ package com.grayash.crud.manageuser.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import feign.Logger;
 import feign.auth.BasicAuthRequestInterceptor;
-import feign.codec.Encoder;
-import feign.form.FormEncoder;
 
 @Configuration
 public class OauthFeignClientConfiguration {

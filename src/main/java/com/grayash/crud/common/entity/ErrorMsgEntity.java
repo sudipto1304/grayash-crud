@@ -1,13 +1,14 @@
 package com.grayash.crud.common.entity;
 
 
-import lombok.Data;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+
+import lombok.Data;
 
 @Entity
 @Table(name = "ERROR_MESSAGE_VIEW")

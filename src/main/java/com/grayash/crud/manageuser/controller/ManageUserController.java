@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.util.CodeConstant;
-import com.grayash.crud.common.util.CommonUtils;
 import com.grayash.crud.manageuser.model.request.ManageUserRequest;
 import com.grayash.crud.manageuser.model.request.OauthRequest;
 import com.grayash.crud.manageuser.model.response.ManagerUserResponse;
