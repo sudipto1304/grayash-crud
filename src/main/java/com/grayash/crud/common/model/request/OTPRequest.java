@@ -13,4 +13,5 @@ public class OTPRequest extends CommonRequest implements Serializable{
 	private String phoneNumber;
 	private FlowType flowId;
 	private String countryCode;
+	private String otp;
 }

@@ -44,7 +44,7 @@ public class UserRegistrationService {
         if(null!=findAllByUserIdAndEmailIdAndContactNumber && findAllByUserIdAndEmailIdAndContactNumber.size()>0){
             if (Log.isErrorEnabled())
                 Log.error("user present. Throwing error");
-            throw new UserPresentException(request.getEmailId());
+            throw new UserPresentException();
         }else{
 
             userEntity.setCustomerId(UUID.randomUUID().toString());

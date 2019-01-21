@@ -70,3 +70,4 @@ bin/main/com/grayash/crud/common/service/MessageSenderService.class
 *.class
 *.class
 *.class
+*.class

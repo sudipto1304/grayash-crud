@@ -7,8 +7,10 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class ValidateOTPRequest extends CommonRequest implements Serializable{
+public class InvalidOTPAttemptRequest implements Serializable{
+	
+	private String phoneNumber;
+	private FlowType flowType;
+	private int count;
 
-    private String phoneNumber;
-    private FlowType flowType;
 }

@@ -7,15 +7,18 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.grayash.crud.common.entity.ErrorMsgEntity;
 import com.grayash.crud.common.entity.OTPEntity;
+import com.grayash.crud.common.model.request.InvalidOTPAttemptRequest;
 import com.grayash.crud.common.model.request.OTPRequest;
-import com.grayash.crud.common.model.request.ValidateOTPRequest;
+import com.grayash.crud.common.model.request.OTPStatusChangeRequest;
 import com.grayash.crud.common.model.response.ErrorMessageResponse;
 import com.grayash.crud.common.model.response.OTPResponse;
 import com.grayash.crud.common.model.response.OTPStatus;
+import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.model.response.ValidateOTPResponse;
 import com.grayash.crud.common.repository.ErrorMsgRepository;
 import com.grayash.crud.common.repository.OTPRepository;
@@ -52,6 +55,7 @@ public class AppCommonService implements CodeConstant {
 		otpEntity.setPhoneNumber(request.getPhoneNumber());
 		otpEntity.setStatus(OTPStatus.GENERATED.name());
 		otpEntity.setPhoneNumberCountry(request.getCountryCode());
+		otpEntity.setCount(0);
 		OTPEntity otpEntityData = otpRepository.save(otpEntity);
 		response.setPhoneNumber(otpEntity.getPhoneNumber());
 		response.setPhoneNumberCountryCode(otpEntityData.getPhoneNumberCountry());
@@ -59,14 +63,15 @@ public class AppCommonService implements CodeConstant {
 		return response;
 	}
 
-	public ValidateOTPResponse validateOTP(ValidateOTPRequest request) {
-		OTPEntity otpEntity = otpRepository.findByPhoneNumberAndFlowId(request.getPhoneNumber(), request.getFlowType().name());
+	public ValidateOTPResponse validateOTP(OTPRequest request) {
+		OTPEntity otpEntity = otpRepository.findByPhoneNumberAndFlowId(request.getPhoneNumber(), request.getFlowId().name());
 		ValidateOTPResponse response = new ValidateOTPResponse();
 		if(otpEntity!=null) {
 			response.setAttemptCount(otpEntity.getCount());
 			response.setCountryCode(otpEntity.getPhoneNumberCountry());
 			response.setOtp(otpEntity.getOTP());
 			response.setPhoneNumber(otpEntity.getPhoneNumber());
+			response.setFlowId(request.getFlowId());
 		}
 		return response;
 	}
@@ -88,6 +93,21 @@ public class AppCommonService implements CodeConstant {
 		if(null!=errorMsgList && errorMsgList.size()>0){
             errorMsgList.forEach(e->ErrorMsg.putErrorMsg(e.getMsgCode(), e.getMsgText()));
         }
+		
+	}
+	
+	public Status increaseOTPCount(InvalidOTPAttemptRequest request) {
+		OTPEntity otpEntity = otpRepository.findByPhoneNumberAndFlowId(request.getPhoneNumber(), request.getFlowType().name());
+		otpEntity.setCount(otpEntity.getCount()+1);
+		otpRepository.save(otpEntity);
+		return new Status(HTTP_OK_STATUS, "", HttpStatus.OK);
+		
+	}
+	
+	public void updateOTPStatus(OTPStatusChangeRequest request) {
+		OTPEntity otpEntity = otpRepository.findByPhoneNumberAndFlowId(request.getPhoneNumber(), request.getFlowType().name());
+		otpEntity.setStatus(request.getStatus().name());
+		otpRepository.save(otpEntity);
 		
 	}
 	

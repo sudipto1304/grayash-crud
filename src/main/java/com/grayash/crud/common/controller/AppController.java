@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.grayash.crud.common.model.request.InvalidOTPAttemptRequest;
 import com.grayash.crud.common.model.request.OTPRequest;
-import com.grayash.crud.common.model.request.ValidateOTPRequest;
+import com.grayash.crud.common.model.request.OTPStatusChangeRequest;
 import com.grayash.crud.common.model.response.ErrorMessageResponse;
 import com.grayash.crud.common.model.response.OTPResponse;
 import com.grayash.crud.common.model.response.Status;
@@ -65,7 +66,7 @@ public class AppController implements CodeConstant {
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @RequestMapping(value="/otp/validate", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ValidateOTPResponse> validateOtp(@RequestBody ValidateOTPRequest request, HttpServletRequest servletRequest) {
+    public ResponseEntity<ValidateOTPResponse> validateOtp(@RequestBody OTPRequest request, HttpServletRequest servletRequest) {
         if(Log.isDebugEnabled())
             Log.debug("Validate OTP Request::"+request);
         ValidateOTPResponse response = service.validateOTP(request);
@@ -115,4 +116,30 @@ public class AppController implements CodeConstant {
             Log.debug("returning response "+response);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    
+    
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = Status.class),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @RequestMapping(value="/OTP/invalid", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Status> invalidOTPAttempts(@RequestBody InvalidOTPAttemptRequest request, HttpServletRequest servletRequest) {
+    	Status response = service.increaseOTPCount(request);
+        if(Log.isDebugEnabled())
+            Log.debug("returning response "+response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    
+    
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = Status.class),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @RequestMapping(value="/OTP/change/status", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> updateOTPStatus(@RequestBody OTPStatusChangeRequest request, HttpServletRequest servletRequest) {
+    	service.updateOTPStatus(request);
+        return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+    }
+    
+    
 }

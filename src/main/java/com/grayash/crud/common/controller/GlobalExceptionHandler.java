@@ -17,9 +17,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.github.grayash.exception.CustomerIdNotFoundException;
 import com.github.grayash.exception.InvalidMessageCodeException;
+import com.github.grayash.exception.InvalidOTPException;
 import com.github.grayash.exception.OTPExpiredException;
-import com.github.grayash.exception.OTPNotMatchException;
-import com.github.grayash.exception.OtpNotGeneratedException;
+import com.github.grayash.exception.OTPGenerationException;
 import com.github.grayash.exception.UserPresentException;
 import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.util.CodeConstant;
@@ -64,8 +64,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
     	if(Log.isErrorEnabled())
             Log.error("Exception::", ex);
         Status status  = new Status();
-        status.setResponseMsg(MSG_99999);
+        status.setResponseCode(MSG_99999);
         status.setResponseMsg(getErrorMsg(MSG_99999));
+        status.setHttpCode(HttpStatus.INTERNAL_SERVER_ERROR);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
@@ -73,8 +74,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
     }
 
 
-    @ExceptionHandler(OtpNotGeneratedException.class)
-    protected ResponseEntity<Object> handleGlobalException(OtpNotGeneratedException ex, WebRequest request) {
+    @ExceptionHandler(OTPGenerationException.class)
+    protected ResponseEntity<Object> handleGlobalException(OTPGenerationException ex, WebRequest request) {
         Status status  = new Status();
         status.setResponseCode(MSG_00004);
         status.setResponseMsg(getErrorMsg(MSG_00004));
@@ -101,7 +102,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
     @ExceptionHandler(OTPExpiredException.class)
     protected ResponseEntity<Object> handleGlobalException(OTPExpiredException ex, WebRequest request) {
         Status status  = new Status();
-        status.setResponseMsg(MSG_00005);
+        status.setResponseCode(MSG_00005);
         status.setResponseMsg(getErrorMsg(MSG_00005));
         status.setHttpCode(HttpStatus.UPGRADE_REQUIRED);
         HttpHeaders headers = new HttpHeaders();
@@ -110,18 +111,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
                 headers, HttpStatus.PRECONDITION_FAILED, request);
     }
 
-    @ExceptionHandler(OTPNotMatchException.class)
-    protected ResponseEntity<Object> handleGlobalException(OTPNotMatchException ex, WebRequest request) {
+    @ExceptionHandler(InvalidOTPException.class)
+    protected ResponseEntity<Object> handleGlobalException(InvalidOTPException ex, WebRequest request) {
         int count = ex.getOtpErrorCount();
         Status status  = new Status();
         int leftCount = 3-count;
-        if(leftCount>1){
-            status.setResponseMsg(MSG_00006);
+        if(leftCount>0){
+            status.setResponseCode(MSG_00006);
             status.setResponseMsg(getErrorMsg(MSG_00006).replace("$#$", String.valueOf(count)));
             status.setHttpCode(HttpStatus.NOT_ACCEPTABLE);
-        }else if(leftCount==1){
-            status.setResponseMsg(MSG_00007);
-            status.setResponseMsg(getErrorMsg(MSG_00007).replace("$#$", String.valueOf(count)));
+        }else if(leftCount==0){
+            status.setResponseCode(MSG_00007);
+            status.setResponseMsg(getErrorMsg(MSG_00007));
             status.setHttpCode(HttpStatus.NOT_ACCEPTABLE);
         }
         HttpHeaders headers = new HttpHeaders();
@@ -135,8 +136,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
         if(Log.isErrorEnabled())
             Log.error("Exception::", ex);
         Status status  = new Status();
-        status.setResponseMsg(MSG_99999);
+        status.setResponseCode(MSG_99999);
         status.setResponseMsg(getErrorMsg(MSG_99999));
+        status.setHttpCode(HttpStatus.INTERNAL_SERVER_ERROR);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
