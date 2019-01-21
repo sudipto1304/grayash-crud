@@ -1,16 +1,23 @@
 package com.grayash.crud.common.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.grayash.crud.common.entity.ErrorMsgEntity;
 import com.grayash.crud.common.entity.OTPEntity;
 import com.grayash.crud.common.model.request.OTPRequest;
 import com.grayash.crud.common.model.request.ValidateOTPRequest;
+import com.grayash.crud.common.model.response.ErrorMessageResponse;
 import com.grayash.crud.common.model.response.OTPResponse;
 import com.grayash.crud.common.model.response.OTPStatus;
 import com.grayash.crud.common.model.response.ValidateOTPResponse;
+import com.grayash.crud.common.repository.ErrorMsgRepository;
 import com.grayash.crud.common.repository.OTPRepository;
 import com.grayash.crud.common.util.CodeConstant;
 import com.grayash.crud.common.util.CommonUtils;
@@ -27,6 +34,10 @@ public class AppCommonService implements CodeConstant {
 
 	@Autowired
 	private OTPRepository otpRepository;
+	
+	@Autowired
+    private ErrorMsgRepository errorRepository;
+	
 
 
 
@@ -60,9 +71,24 @@ public class AppCommonService implements CodeConstant {
 		return response;
 	}
 	
-	public String getErrorMessage(String msgCode) {
-		return ErrorMsg.getErrorMsg(msgCode);
+	public ErrorMessageResponse getErrorMessage(String msgCode) {
+		return new ErrorMessageResponse(msgCode, ErrorMsg.getErrorMsg(msgCode));
 	}
 
+	public List<ErrorMessageResponse> getAllErrorMessage() {
+		Map<String, String> errorMsg =  ErrorMsg.getAllErrorMsg();
+		List<ErrorMessageResponse> response = new ArrayList<>();
+		errorMsg.forEach((k,v)->response.add(new ErrorMessageResponse(k,v)));
+		return response;
+	}
+	
+	
+	public void refreshCache() {
+		List<ErrorMsgEntity> errorMsgList = errorRepository.findAll();
+		if(null!=errorMsgList && errorMsgList.size()>0){
+            errorMsgList.forEach(e->ErrorMsg.putErrorMsg(e.getMsgCode(), e.getMsgText()));
+        }
+		
+	}
 	
 }

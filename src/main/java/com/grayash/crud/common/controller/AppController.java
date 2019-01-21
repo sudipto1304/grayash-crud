@@ -1,6 +1,8 @@
 package com.grayash.crud.common.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.grayash.crud.common.model.request.OTPRequest;
 import com.grayash.crud.common.model.request.ValidateOTPRequest;
+import com.grayash.crud.common.model.response.ErrorMessageResponse;
 import com.grayash.crud.common.model.response.OTPResponse;
 import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.model.response.ValidateOTPResponse;
@@ -75,16 +78,39 @@ public class AppController implements CodeConstant {
     
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK", response = String.class),
-            @ApiResponse(code = 412, message = "Precondition Failed"),
-            @ApiResponse(code = 426, message = "Upgrade Required"),
-            @ApiResponse(code = 406, message = "Not Acceptable"),
             @ApiResponse(code = 500, message = "Internal Server Error")
     })
     @RequestMapping(value="/message/{msgId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> getErrorMessage(@PathVariable("msgId") String msgId, HttpServletRequest servletRequest) {
+    public ResponseEntity<ErrorMessageResponse> getErrorMessage(@PathVariable("msgId") String msgId, HttpServletRequest servletRequest) {
         if(Log.isDebugEnabled())
             Log.debug("Requested message id is "+msgId);
-        String response = service.getErrorMessage(msgId);
+        ErrorMessageResponse response = service.getErrorMessage(msgId);
+        if(Log.isDebugEnabled())
+            Log.debug("returning response "+response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = ErrorMessageResponse.class),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @RequestMapping(value="/message/getAll", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ErrorMessageResponse>> getAllErrorMessage(HttpServletRequest servletRequest) {
+    	List<ErrorMessageResponse> response = service.getAllErrorMessage();
+        if(Log.isDebugEnabled())
+            Log.debug("returning response "+response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    
+    
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = Status.class),
+            @ApiResponse(code = 500, message = "Internal Server Error")
+    })
+    @RequestMapping(value="/cache/refresh", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Status> refreshCache(HttpServletRequest servletRequest) {
+    	service.refreshCache();
+    	Status response = new Status(HTTP_OK_STATUS, "", HttpStatus.OK);
         if(Log.isDebugEnabled())
             Log.debug("returning response "+response);
         return new ResponseEntity<>(response, HttpStatus.OK);

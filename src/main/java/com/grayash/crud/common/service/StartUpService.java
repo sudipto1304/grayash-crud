@@ -27,7 +27,7 @@ public class StartUpService extends ErrorMsg {
     public void loadErrorMsg() {
         List<ErrorMsgEntity> errorMsgList = repository.findAll();
         if(null!=errorMsgList && errorMsgList.size()>0){
-            errorMsgList.forEach(e->this.putErrorMsg(e.getMsgCode(), e.getMsgText()));
+            errorMsgList.forEach(e->putErrorMsg(e.getMsgCode(), e.getMsgText()));
         }
         if(LOG.isDebugEnabled())
             LOG.debug("Error Msg from DB::"+errorMsgList);

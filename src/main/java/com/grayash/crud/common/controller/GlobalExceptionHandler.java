@@ -61,14 +61,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
     
     @ExceptionHandler(InvalidMessageCodeException.class)
     protected ResponseEntity<Object> handleGlobalException(InvalidMessageCodeException ex, WebRequest request) {
+    	if(Log.isErrorEnabled())
+            Log.error("Exception::", ex);
         Status status  = new Status();
-        status.setResponseCode(MSG_00003);
-        status.setResponseMsg(getErrorMsg(MSG_00003));
-        status.setHttpCode(HttpStatus.PRECONDITION_FAILED);
+        status.setResponseMsg(MSG_99999);
+        status.setResponseMsg(getErrorMsg(MSG_99999));
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
-                headers, HttpStatus.PRECONDITION_FAILED, request);
+                headers, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
 

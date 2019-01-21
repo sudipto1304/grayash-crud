@@ -10,16 +10,22 @@ public class ErrorMsg {
     private static Map<String, String> errorMsg=new HashMap<>();
 
     public static String getErrorMsg(String msgCode){
-        if(errorMsg!=null){
+        if(errorMsg!=null && errorMsg.get(msgCode)!=null){
             return errorMsg.get(msgCode);
         }else {
         	throw new InvalidMessageCodeException();
         }
         
     }
+    
+    
+    public static Map<String, String> getAllErrorMsg(){
+        return errorMsg;
+        
+    }
 
 
-    protected void putErrorMsg(String key, String value){
-        this.errorMsg.put(key, value);
+    public static void putErrorMsg(String key, String value){
+        errorMsg.put(key, value);
     }
 }
