@@ -3,7 +3,7 @@ package com.grayash.crud.common.util;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.grayash.exception.InvalidMessageCodeException;
+import com.grayash.exception.InvalidMessageCodeException;
 
 public class ErrorMsg {
 

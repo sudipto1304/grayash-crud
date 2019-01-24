@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.github.grayash.exception.UserPresentException;
 import com.grayash.crud.common.util.TrippleDes;
 import com.grayash.crud.manageuser.entity.UserEntity;
 import com.grayash.crud.manageuser.model.request.AccountStatus;
@@ -17,6 +16,7 @@ import com.grayash.crud.manageuser.model.request.Verify;
 import com.grayash.crud.manageuser.model.response.ManagerUserResponse;
 import com.grayash.crud.manageuser.repository.UserRepository;
 import com.grayash.crud.manageuser.util.ManageUserUtil;
+import com.grayash.exception.UserPresentException;
 
 @Service
 public class UserRegistrationService {

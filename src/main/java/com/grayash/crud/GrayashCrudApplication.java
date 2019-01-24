@@ -12,8 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import com.github.grayash.security.EnableGrayashSecurity;
-import com.grayash.auditactivity.config.EnableAuditActivity;
+import com.grayash.security.EnableGrayashSecurity;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;

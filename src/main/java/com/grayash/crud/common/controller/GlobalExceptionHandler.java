@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.github.grayash.exception.CustomerIdNotFoundException;
-import com.github.grayash.exception.InvalidMessageCodeException;
-import com.github.grayash.exception.InvalidOTPException;
-import com.github.grayash.exception.OTPExpiredException;
-import com.github.grayash.exception.OTPGenerationException;
-import com.github.grayash.exception.UserPresentException;
 import com.grayash.crud.common.model.response.Status;
 import com.grayash.crud.common.util.CodeConstant;
 import com.grayash.crud.common.util.CommonUtils;
+import com.grayash.exception.CustomerIdNotFoundException;
+import com.grayash.exception.InvalidMessageCodeException;
+import com.grayash.exception.InvalidOTPException;
+import com.grayash.exception.OTPExpiredException;
+import com.grayash.exception.OTPGenerationException;
+import com.grayash.exception.UserPresentException;
 
 @SuppressWarnings("Duplicates")
 @ControllerAdvice
