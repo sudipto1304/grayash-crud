@@ -42,16 +42,13 @@ public class AppController implements CodeConstant {
 
 
     @ApiResponses(value = {
-            @ApiResponse(code = 202, message = "Accepted", response = OTPResponse.class),
-            @ApiResponse(code = 412, message = "Precondition Failed"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
+            @ApiResponse(code = 202, message = "Accepted", response = OTPResponse.class)
     })
     @RequestMapping(value="/otp/generate", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OTPResponse> generateOtp(@RequestBody OTPRequest request, HttpServletRequest servletRequest) {
         if(Log.isDebugEnabled())
             Log.debug("Request to generate OTP for the customerId::"+request);
         OTPResponse response = service.generateOTP(request);
-        response.setStatus(new Status(HTTP_OK_STATUS, "", HttpStatus.ACCEPTED));
         if(Log.isDebugEnabled())
             Log.debug("returning response "+response);
         return new ResponseEntity<>(response, HttpStatus.ACCEPTED);
@@ -59,11 +56,7 @@ public class AppController implements CodeConstant {
 
 
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = ValidateOTPResponse.class),
-            @ApiResponse(code = 412, message = "Precondition Failed"),
-            @ApiResponse(code = 426, message = "Upgrade Required"),
-            @ApiResponse(code = 406, message = "Not Acceptable"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
+            @ApiResponse(code = 200, message = "OK", response = ValidateOTPResponse.class)
     })
     @RequestMapping(value="/otp/validate", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ValidateOTPResponse> validateOtp(@RequestBody OTPRequest request, HttpServletRequest servletRequest) {
@@ -78,8 +71,7 @@ public class AppController implements CodeConstant {
     
     
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = String.class),
-            @ApiResponse(code = 500, message = "Internal Server Error")
+            @ApiResponse(code = 200, message = "OK", response = String.class)
     })
     @RequestMapping(value="/message/{msgId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ErrorMessageResponse> getErrorMessage(@PathVariable("msgId") String msgId, HttpServletRequest servletRequest) {
@@ -92,8 +84,7 @@ public class AppController implements CodeConstant {
     }
     
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = ErrorMessageResponse.class),
-            @ApiResponse(code = 500, message = "Internal Server Error")
+            @ApiResponse(code = 200, message = "OK", response = ErrorMessageResponse.class)
     })
     @RequestMapping(value="/message/getAll", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<ErrorMessageResponse>> getAllErrorMessage(HttpServletRequest servletRequest) {
@@ -105,8 +96,7 @@ public class AppController implements CodeConstant {
     
     
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = Status.class),
-            @ApiResponse(code = 500, message = "Internal Server Error")
+            @ApiResponse(code = 200, message = "OK", response = Status.class)
     })
     @RequestMapping(value="/cache/refresh", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Status> refreshCache(HttpServletRequest servletRequest) {
@@ -119,8 +109,7 @@ public class AppController implements CodeConstant {
     
     
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = Status.class),
-            @ApiResponse(code = 500, message = "Internal Server Error")
+            @ApiResponse(code = 200, message = "OK", response = Status.class)
     })
     @RequestMapping(value="/OTP/invalid", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Status> invalidOTPAttempts(@RequestBody InvalidOTPAttemptRequest request, HttpServletRequest servletRequest) {
@@ -132,8 +121,7 @@ public class AppController implements CodeConstant {
     
     
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = Status.class),
-            @ApiResponse(code = 500, message = "Internal Server Error")
+            @ApiResponse(code = 200, message = "OK", response = Status.class)
     })
     @RequestMapping(value="/OTP/change/status", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> updateOTPStatus(@RequestBody OTPStatusChangeRequest request, HttpServletRequest servletRequest) {

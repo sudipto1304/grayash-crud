@@ -9,7 +9,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class ManagerUserResponse{
+public class ManagerUserResponse extends Status{
 
     private String firstName;
     private String lastName;
@@ -21,6 +21,5 @@ public class ManagerUserResponse{
     private AccountStatus accountStatus;
     private Verify verifyStatus;
     private String customerId;
-    private Status status;
     private OauthToken token;
 }

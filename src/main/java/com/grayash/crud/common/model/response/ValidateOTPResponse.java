@@ -9,7 +9,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class ValidateOTPResponse implements Serializable{
+public class ValidateOTPResponse extends Status implements Serializable{
 	
 	private String otp;
 	private String phoneNumber;

@@ -46,16 +46,14 @@ public class ManageUserController implements CodeConstant {
 
 
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Created", response = ManagerUserResponse.class),
-            @ApiResponse(code = 412, message = "Precondition Failed"),
-            @ApiResponse(code = 500, message = "Internal Server Error")
+            @ApiResponse(code = 201, message = "Created", response = ManagerUserResponse.class)
     })
 	@RequestMapping(value="/register", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ManagerUserResponse> registerUser(@RequestBody ManageUserRequest request, HttpServletRequest servletRequest, @RequestHeader HttpHeaders headers) {
 		if(Log.isDebugEnabled())
 			Log.debug("Registration Request::"+request);
 		ManagerUserResponse response = service.registerUser(request);
-		response.setStatus(new Status(HTTP_OK_STATUS, "", HttpStatus.CREATED));
+		response.setHttpCode(HttpStatus.CREATED);
 		return new ResponseEntity<>(response, HttpStatus.CREATED);
 	}
     

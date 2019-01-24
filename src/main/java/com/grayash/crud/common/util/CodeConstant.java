@@ -20,4 +20,5 @@ public interface CodeConstant {
     String SECRET ="725e76e5-cd25-4b8a-8b57-96cb4fb356f6";
 
     String HTTP_OK_STATUS = "200_OK";
+    String SUCCESS = "SUCCESS";
 }

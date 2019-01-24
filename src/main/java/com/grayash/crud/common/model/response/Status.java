@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import org.springframework.http.HttpStatus;
 
+import com.grayash.crud.common.util.CodeConstant;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -17,7 +19,9 @@ public class Status implements Serializable {
 
 
     public Status(){
-
+    	this.responseCode = HttpStatus.OK.name();
+    	this.responseMsg = CodeConstant.SUCCESS;
+    	this.httpCode = httpCode.OK;
     }
 
 

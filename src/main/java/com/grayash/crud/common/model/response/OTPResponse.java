@@ -5,11 +5,10 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class OTPResponse {
+public class OTPResponse extends Status{
 
     private String phoneNumber;
     private String phoneNumberCountryCode;
     private OTPStatus otpStatus;
-    private Status status;
 
 }
