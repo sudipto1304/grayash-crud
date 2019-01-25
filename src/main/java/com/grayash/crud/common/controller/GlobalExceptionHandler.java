@@ -43,7 +43,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
-                headers, HttpStatus.OK, request);
+                headers, HttpStatus.PRECONDITION_FAILED, request);
     }
 
     @ExceptionHandler(CustomerIdNotFoundException.class)
@@ -55,7 +55,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
-                headers, HttpStatus.OK, request);
+                headers, HttpStatus.PRECONDITION_FAILED, request);
     }
 
     
@@ -83,7 +83,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
-                headers, HttpStatus.OK, request);
+                headers, HttpStatus.PRECONDITION_FAILED, request);
     }
     
     @ExceptionHandler(DataIntegrityViolationException.class)
@@ -95,7 +95,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
-                headers, HttpStatus.OK, request);
+                headers, HttpStatus.PRECONDITION_FAILED, request);
     }
 
 
@@ -108,7 +108,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
-                headers, HttpStatus.OK, request);
+                headers, HttpStatus.UPGRADE_REQUIRED, request);
     }
 
     @ExceptionHandler(InvalidOTPException.class)
@@ -128,7 +128,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler imple
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return handleExceptionInternal(ex, CommonUtils.constructJsonResponse(status),
-                headers, HttpStatus.OK, request);
+                headers, HttpStatus.NOT_ACCEPTABLE, request);
     }
 
     @ExceptionHandler({Exception.class})
